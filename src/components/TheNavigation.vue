@@ -3,8 +3,8 @@
     <router-link to="/">Home</router-link>
     <router-link
       v-for="destination of destinations"
-      :key="destination.id"
-      :to="{ name: 'DestinationDetails', params: { id: destination.id } }"
+      :key="destination.slug"
+      :to="{ name: 'DestinationDetails', params: { slug: destination.slug } }"
       >{{ destination.name }}</router-link
     >
   </div>
@@ -16,7 +16,7 @@ export default {
   name: "TheNavigation",
   data() {
     return {
-      destinationId: this.$route.params.id,
+      slug: this.$route.params.slug,
       destinations: store.destinations
     };
   }
@@ -34,6 +34,7 @@ export default {
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
 }
 #nav a:hover {
   color: #739bc2;

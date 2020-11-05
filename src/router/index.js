@@ -8,20 +8,34 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    props: true
   },
   {
-    path: "/details/:id",
+    path: "/destination/:slug",
     name: "DestinationDetails",
     component: () =>
       import(
         /*webpackChunkName:"DestinationDetails"*/ "../views/DestinationDetails.vue"
-      )
+      ),
+    props: true,
+    children: [
+      {
+        path: ":experienceSlug",
+        name: "experienceDetails",
+        component: () =>
+          import(
+            /*webpackChunkName: "ExperienceDetails"*/ "../views/ExperienceDetails.vue"
+          ),
+        props: true
+      }
+    ]
   }
 ];
 
 const router = new VueRouter({
   linkExactActiveClass: "active-route-class",
+  mode: "history",
   routes
 });
 
