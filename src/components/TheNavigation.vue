@@ -1,12 +1,23 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link>
-    <router-link
-      v-for="destination of destinations"
-      :key="destination.slug"
-      :to="{ name: 'DestinationDetails', params: { slug: destination.slug } }"
-      >{{ destination.name }}</router-link
-    >
+    <ul>
+      <li>
+        <router-link to="/">Home</router-link>
+      </li>
+      <li v-for="destination of destinations" :key="destination.slug">
+        <router-link
+          :to="{
+            name: 'DestinationDetails',
+            params: { slug: destination.slug }
+          }"
+          >{{ destination.name }}</router-link
+        >
+      </li>
+
+      <li>
+        <router-link to="/user">Dashboard</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -24,23 +35,24 @@ export default {
 </script>
 
 <style>
-#nav {
+#nav ul {
   padding: 30px;
   display: flex;
   gap: 30px;
   justify-content: center;
+  list-style: none;
 }
 
-#nav a {
+#nav ul li {
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
 }
-#nav a:hover {
+#nav ul li:hover {
   color: #739bc2;
 }
 
-#nav a.active-route-class {
+#nav ul li.active-route-class {
   color: #ec47e4;
 }
 </style>

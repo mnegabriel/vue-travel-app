@@ -1,5 +1,6 @@
 <template>
   <div>
+    <GoBackButton />
     <section class="destination">
       <h1>{{ destinationData.name }}</h1>
       <div class="destination-details">
@@ -13,7 +14,7 @@
 
     <section class="experiences">
       <h2>Top experiences in {{ destinationData.name }}</h2>
-      <div class="cards">
+      <div class="cards" id="experience">
         <div
           v-for="experience of destinationData.experiences"
           :key="experience.slug"
@@ -22,7 +23,8 @@
           <router-link
             :to="{
               name: 'experienceDetails',
-              params: { experienceSlug: experience.slug }
+              params: { experienceSlug: experience.slug },
+              hash: '#experience'
             }"
           >
             <img
@@ -42,9 +44,13 @@
 
 <script>
 import store from "@/store.js";
+import GoBackButton from "@/components/GoBackButton";
 
 export default {
   name: "DestinationDetails",
+  components: {
+    GoBackButton
+  },
   data() {
     return {};
   },
